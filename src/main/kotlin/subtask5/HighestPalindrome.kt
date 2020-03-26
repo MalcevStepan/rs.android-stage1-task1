@@ -44,11 +44,13 @@ class HighestPalindrome {
                 }
             }
         }
-        val i = compare(n, array, array2)
-        return if (i == 0 && isPalindrome(n, array)) String(array)
-        else if (i == 1 && isPalindrome(n, array2)) String(array2)
-        else if (i == 2 && isPalindrome(n, array)) String(array)
-        else "-1"
+        if (isPalindrome(n, array) && isPalindrome(n, array2)) {
+            val i = compare(n, array, array2)
+            if (i == 0 || i == 2) return String(array)
+            if (i == 1) return String(array2)
+        } else if (isPalindrome(n, array)) return String(array)
+        else if (isPalindrome(n, array2)) return String(array2)
+        return "-1"
     }
 
     fun isPalindrome(n: Int, array: CharArray): Boolean {
